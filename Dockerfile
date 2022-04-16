@@ -19,8 +19,8 @@ RUN mvn -f /app/pom.xml clean package
 FROM alpine:3.13
 
 ENV  MYSQL_HOST 10.0.224.17
-ENV  MYSQL_USER_NAME root
-ENV  MYSQL_PASSWORD Music2022
+ENV  MYSQL_USER_NAME smartKitchen
+ENV  MYSQL_PASSWORD smartKitchen2022
 ENV  DATABASE_NAME smart-kitchen
 
 
