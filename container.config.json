@@ -11,8 +11,8 @@
   "customLogs": "stdout",
   "dataBaseName":"smart-kitchen",
   "executeSQLs":[
-    "CREATE DATABASE IF NOT EXISTS lu_music;",
-    "USE DATABASE lu_music"
+    "CREATE DATABASE IF NOT EXISTS smart-kitchen;",
+    "USE DATABASE smart-kitchen"
   ]
 }
 
