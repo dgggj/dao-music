@@ -1,6 +1,6 @@
 {
 
-  "containerPort": 10000,
+  "containerPort": 80,
   "minNum": 0,
   "maxNum": 50,
   "cpu": 1,
