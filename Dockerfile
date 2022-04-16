@@ -39,7 +39,7 @@ WORKDIR /app
 COPY --from=build /app/target/smart-kitchen-0.0.1.jar .
 
 # 暴露端口
-EXPOSE 80
+EXPOSE 10000
 
 # 执行启动命令
 CMD ["java", "-jar", "/app/smart-kitchen-0.0.1.jar"]
