@@ -13,7 +13,7 @@ COPY pom.xml /app/
 
 # 执行代码编译命令
 # 自定义settings.xml, 选用国内镜像源以提高下载速度
-RUN mvn -f /app/pom.xml clean package
+RUN mvn -f /app/pom.xml clean package -Dspring.profiles.active=prod
 
 # 选择运行时基础镜像
 FROM alpine:3.13
