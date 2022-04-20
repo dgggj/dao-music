@@ -22,6 +22,7 @@ ENV  MYSQL_HOST 10.0.224.9
 ENV  MYSQL_USER_NAME smartKitchen
 ENV  MYSQL_PASSWORD smartKitchen2022
 ENV  DATABASE_NAME smart-kitchen
+ENV  APPLICATION_PORT 80
 
 
 RUN apk add --update --no-cache openjdk8-jre-base \
