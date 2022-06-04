@@ -8,6 +8,7 @@ import com.che.smartkitchen.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Wrapper;
 import java.util.List;
 import java.util.stream.Collectors;
 @Service
@@ -16,6 +17,9 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
     @Override
     public List<UserDto> list() {
+
+
+
         return userRepository.findAll().stream().map(a->userMapper.toDto(a)).collect(Collectors.toList());
 
     }

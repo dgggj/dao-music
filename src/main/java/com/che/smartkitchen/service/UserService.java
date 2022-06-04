@@ -7,4 +7,8 @@ import java.util.*;
 
 public interface UserService {
     List<UserDto> list();
+
+
+
+
 }

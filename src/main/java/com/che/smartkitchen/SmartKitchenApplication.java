@@ -8,6 +8,9 @@ public class SmartKitchenApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SmartKitchenApplication.class, args);
+        String str="sdsds";
+
+
     }
 
 }
