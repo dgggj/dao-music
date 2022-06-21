@@ -1,12 +1,12 @@
 package com.che.smartkitchen.controller;
 
+import com.che.smartkitchen.dto.UserCreateDto;
 import com.che.smartkitchen.mapper.UserMapper;
 import com.che.smartkitchen.service.UserService;
 import com.che.smartkitchen.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -21,7 +21,15 @@ public class UserController {
 
     @GetMapping("/")
     public List<UserVo>list(){
+        System.out.println(userService.list());
         return userService.list().stream().map(userMapper::toVo).collect(Collectors.toList());
+    }
+    @PostMapping("/")
+    UserVo create(@RequestBody UserCreateDto userCreateDto){
+
+
+        return userMapper.toVo(userService.create(userCreateDto));
+
     }
 
 

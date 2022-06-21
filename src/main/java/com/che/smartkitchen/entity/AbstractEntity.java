@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.util.Date;
 
-@Data
+
 @MappedSuperclass
 public abstract class AbstractEntity {
     @Id
@@ -21,4 +21,28 @@ public abstract class AbstractEntity {
 
     @UpdateTimestamp
     private Date updateTime;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 }

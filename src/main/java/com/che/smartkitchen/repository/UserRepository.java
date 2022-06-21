@@ -6,4 +6,5 @@ import java.util.*;
 
 public interface UserRepository extends JpaRepository<User,String> {//这两个参数一个为实体类，另一个是实体类主键的类型
     User getByUsername(String name);
+    Optional<User> findByUsername(String name);
 }

@@ -20,9 +20,9 @@ class UserRepositoryTest {
         User save = repository.save(user);
         user.setUsername("qia");
         user.setNickname("chexu");
-        user.setEnabled(true);
+//        user.setEnabled(true);
         user.setGender(Gender.FEMALE);
-        user.setLocked(false);
+//        user.setLocked(false);
         user.setPassword("dhs");
         user.setLastLoginIp("127.0.0.2");
         user.setLastLoginTime(new Date());
