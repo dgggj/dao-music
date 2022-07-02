@@ -1,19 +1,19 @@
 package com.che.smartkitchen.entity;
 
 import com.che.smartkitchen.enums.Gender;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.*;
-
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-
+@Data
 public class User extends AbstractEntity implements UserDetails {
 
     @Column(unique = true)
@@ -24,49 +24,20 @@ public class User extends AbstractEntity implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-//    @Transient
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name="user_role",joinColumns = @JoinColumn(name="user_id",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "id"))
+    //    @Transient
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private List<Role> roles;
 
-    private Boolean locked=false;
+    private Boolean locked = false;
 
-    private Boolean enabled=true;
+    private Boolean enabled = true;
 
     private String lastLoginIp;
 
     private Date lastLoginTime;
 
-    public User() {
-    }
-
-    public User(String username, String nickname, String password, Gender gender, List<Role> roles, Boolean locked, Boolean enabled, String lastLoginIp, Date lastLoginTime) {
-        this.username = username;
-        this.nickname = nickname;
-        this.password = password;
-        this.gender = gender;
-        this.roles = roles;
-        this.locked = locked;
-        this.enabled = enabled;
-        this.lastLoginIp = lastLoginIp;
-        this.lastLoginTime = lastLoginTime;
-    }
-
     @Override
-    public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", password='" + password + '\'' +
-                ", gender=" + gender +
-                ", roles=" + roles +
-                ", locked=" + locked +
-                ", enabled=" + enabled +
-                ", lastLoginIp='" + lastLoginIp + '\'' +
-                ", lastLoginTime=" + lastLoginTime +
-                '}';
-    }
-
     public String getUsername() {
         return username;
     }
@@ -83,6 +54,7 @@ public class User extends AbstractEntity implements UserDetails {
         this.nickname = nickname;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }
@@ -141,7 +113,11 @@ public class User extends AbstractEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for (Role role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
+        return authorities;
     }
 
     @Override

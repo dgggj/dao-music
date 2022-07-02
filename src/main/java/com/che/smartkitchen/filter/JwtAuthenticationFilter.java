@@ -7,7 +7,6 @@ import com.che.smartkitchen.entity.User;
 import com.che.smartkitchen.exception.BizException;
 import com.che.smartkitchen.exception.ExceptionType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -33,7 +32,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
-            User user=new ObjectMapper().readValue(request.getInputStream(),User.class);
+            System.out.println("4");
+            User user = new ObjectMapper().readValue(request.getInputStream(), User.class);
 
             return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                     user.getUsername(),
@@ -49,10 +49,11 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
-        String token= JWT.create()
-                .withSubject(((User)authResult.getPrincipal()).getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis()+ SecurityConfig.EXPIRATION_TIME))
+        String token = JWT.create()
+                .withSubject(((User) authResult.getPrincipal()).getUsername())
+                .withExpiresAt(new Date(System.currentTimeMillis() + SecurityConfig.EXPIRATION_TIME))
                 .sign(Algorithm.HMAC512(SecurityConfig.SECRET.getBytes(StandardCharsets.UTF_8)));
-        response.addHeader(SecurityConfig.HEADER_STRING,SecurityConfig.TOKEN_PREFIX+token);
+        System.out.println(SecurityConfig.HEADER_STRING + ": " + SecurityConfig.TOKEN_PREFIX + token);
+        response.addHeader(SecurityConfig.HEADER_STRING, SecurityConfig.TOKEN_PREFIX + token);
     }
 }

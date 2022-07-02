@@ -1,8 +1,11 @@
 package com.che.smartkitchen.vo;
+
+import com.che.smartkitchen.enums.Gender;
 import lombok.Data;
 
-import java.util.*;
+import java.util.List;
 
+@Data
 public class UserVo {
     private String id;
 
@@ -10,7 +13,10 @@ public class UserVo {
 
     private String nickname;
 
-    private List<RoleVo>roles;
+    private List<RoleVo> roles;
+    private Gender gender;
+    private Boolean locked;
+    private Boolean enabled;
 
 
     public String getId() {

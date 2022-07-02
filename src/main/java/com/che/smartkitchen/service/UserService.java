@@ -1,21 +1,32 @@
 package com.che.smartkitchen.service;
 
-import com.che.smartkitchen.dto.UserCreateDto;
+import com.che.smartkitchen.dto.TokenCreateRequest;
+import com.che.smartkitchen.dto.UserCreateRequest;
 import com.che.smartkitchen.dto.UserDto;
+import com.che.smartkitchen.dto.UserUpdateRequest;
 import com.che.smartkitchen.entity.User;
-import com.che.smartkitchen.vo.UserVo;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
-import java.util.*;
 
 
 public interface UserService extends UserDetailsService {
-    List<UserDto> list();
+//    List<UserDto> list();
 
-    UserDto create(UserCreateDto userCreateDto);
+    UserDto create(UserCreateRequest userCreateDto);
 
     @Override
     User loadUserByUsername(String username);
+
+    UserDto get(String id);
+
+    UserDto update(String id, UserUpdateRequest userUpdateRequest);
+
+    void delete(String id);
+
+    Page<UserDto> search(Pageable pageable);
+
+    String createToken(TokenCreateRequest tokenCreateRequest);
+
+    UserDto getCurrentUser();
 }

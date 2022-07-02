@@ -5,7 +5,8 @@ import lombok.Data;
 import javax.persistence.Entity;
 
 @Entity
-public class Role extends AbstractEntity{
+@Data
+public class Role extends AbstractEntity {
     private String name;
 
     private String title;
