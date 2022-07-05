@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .authorizeHttpRequests()
                 .antMatchers(HttpMethod.POST, TOKEN_URL).permitAll()
-                .antMatchers(HttpMethod.DELETE, SIGN_UP_URL).permitAll()
+                .antMatchers(HttpMethod.GET, "/weixin").permitAll()
                 .anyRequest().authenticated()
                 .and()
 //                .addFilter(new JwtAuthenticationFilter(authenticationManager()))
@@ -60,7 +60,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/swagger**/**")
                 .antMatchers("webjars/**")
                 .antMatchers("/v3/**")
-                .antMatchers("/doc.html");
+                .antMatchers("/doc.html")
+                .antMatchers("/weixin/**");
     }
 
     //配置系统中的用户，就相当于这些用户已经完成注册了
