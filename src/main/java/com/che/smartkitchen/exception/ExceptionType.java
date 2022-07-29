@@ -1,4 +1,4 @@
-package com.che.smartkitchen.exception;
+package com.che.smartkitchen.dto.exception;
 
 public enum ExceptionType {
     INNER_ERROR(500, "系统内部错误"),

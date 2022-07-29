@@ -1,4 +1,4 @@
-package com.che.smartkitchen.exception;
+package com.che.smartkitchen.dto.exception;
 
 import lombok.Data;
 

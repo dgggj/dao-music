@@ -1,4 +1,4 @@
-package com.che.smartkitchen.enums;
+package com.che.smartkitchen.exception.enums;
 
 public enum MusicStatus {
     DRAFT,
